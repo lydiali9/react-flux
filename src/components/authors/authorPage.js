@@ -2,16 +2,19 @@
 
 var React = require('react');
 var AuthorAPi = require('../../api/authorApi');
+var AuthorList = require('./authorList');
 
-var Authors = React.createClass({
-	getIniticalState: function() {
+var AuthorPage = React.createClass({
+	getInitialState: function() {
 		return {
 			authors: []
 		};
 	},
 
-	componentWillMount: function() {
-		this.setState({ authors: AuthorAPi.getAllAuthors() });
+	componentDidMount: function() {
+		if(this.isMounted) {
+			this.setState({ authors: AuthorAPi.getAllAuthors() });
+		}
 	},
 
 	render: function() {
@@ -27,19 +30,10 @@ var Authors = React.createClass({
 		return (
 			<div>
 				<h1>Authors</h1>
-
-				<table className="table">
-					<thead>
-						<th>Id</th>
-						<th>Name</th>
-					</thead>
-					<tbody>
-						{this.state.authors.map(createAuthorRow, this)}
-					</tbody>
-				</table>
+				<AuthorList authors={this.state.authors} />
 			</div>
 		);
 	}
 });
 
-module.exports = Authors;
+module.exports = AuthorPage;
