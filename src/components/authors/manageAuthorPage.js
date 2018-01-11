@@ -4,6 +4,7 @@ var React = require('react');
 var Router = require('react-router');
 var AuthorForm = require('./authorForm');
 var AuthorAPi = require('../../api/authorApi');
+var toastr = require('toastr');
 
 var ManageAuthorPage = React.createClass({
 	mixins: [
@@ -23,6 +24,7 @@ var ManageAuthorPage = React.createClass({
 	saveAuthor: function(event) {
 		event.preventDefault();
 		AuthorAPi.saveAuthor(this.state.author);
+		toastr.success('Author saved.');
 		this.transitionTo('authors');
 	},
 	render: function() {
@@ -30,7 +32,8 @@ var ManageAuthorPage = React.createClass({
 			<AuthorForm 
 				author={this.state.author} 
 				onChange={this.setAuthorState}
-				onSave={this.saveAuthor} />
+				onSave={this.saveAuthor} 
+				errors={this.state.errors} />
 		);
 	}
 });

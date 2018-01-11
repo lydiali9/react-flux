@@ -39,7 +39,7 @@ gulp
 ### Step 7
 
 ```bash
-> npm install --save react@0.13.3 react-router@0.13.3 flux@2.0.3 lodash
+> npm install --save react@0.13.3 react-router@0.13.3 flux@2.0.3 lodash toastr@2.1.0
 ```
 
 * If you ever want to update our dependencies to the least version, Please typing `npm update`.
